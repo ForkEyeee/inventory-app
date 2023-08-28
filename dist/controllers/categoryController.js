@@ -16,6 +16,8 @@ exports.index = asyncHandler(async (req, res, next) => {
     //   item_count: numItems,
     // });
     const categories = await Category.find({}).exec();
+    console.log(categories[0].url);
+    console.log(categories[0]);
     res.render("index", {
         title: "Inventory Application",
         category_list: categories,
