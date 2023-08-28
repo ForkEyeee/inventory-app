@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const router = express.Router();
 const category_controller = require("../controllers/categoryController");
-
 router.get("/", category_controller.index);
-
+router.get("/categories", category_controller.categories_list);
 module.exports = router;
