@@ -8,6 +8,7 @@ const compression = require("compression");
 const helmet = require("helmet");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+const catalogRouter = require("./routes/catalog"); //Import routes for "catalog" area of site
 
 var app = express();
 
@@ -44,6 +45,7 @@ app.use(compression());
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/catalog", catalogRouter);
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
@@ -71,5 +73,6 @@ app.use(function (err: any, req: any, res: any, next: any) {
   res.status(err.status || 500);
   res.render("../views/error");
 });
+// console.log(mongoose.connection.readyState);
 
 module.exports = app;

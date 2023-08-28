@@ -24,7 +24,8 @@
     "helmet": "^7.0.0",
     "http-errors": "~1.6.3",
     "luxon": "^3.4.2",
-    "mongoose": "^7.4.3",
+    "mongodb": "^5.8.1",
+    "mongoose": "^7.4.5",
     "morgan": "~1.9.1",
     "pug": "^2.0.0-beta11"
   },
