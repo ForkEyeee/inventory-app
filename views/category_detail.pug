@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	h1= category_detail
+
+	ul
+		each item in item_list
+			li
+				a(href=item.url) #{item.name}
+				|  #{item.description}
+				|  #{price}
+				|  #{quantity}
+
+		else
+			li There are no items for this category.

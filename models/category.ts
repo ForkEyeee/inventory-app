@@ -12,7 +12,7 @@ const CategorySchema = new Schema(
 
 CategorySchema.virtual("url").get(function () {
   // We don't use an arrow function as we'll need the this object
-  return `/catalog/genre/${this._id}`;
+  return `/catalog/${this._id}`;
 });
 
 module.exports = mongoose.model("Category", CategorySchema);

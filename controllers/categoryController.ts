@@ -32,3 +32,14 @@ exports.categories_list = asyncHandler(async (req, res, next) => {
     category_list: categories,
   });
 });
+
+exports.category_detail = asyncHandler(async (req, res, next) => {
+  //Get list of categories
+  const category = await Category.findOne({ _id: req.params.id }).exec();
+  const items = await Item.find({ category: req.params.id }).exec();
+  res.render("category_detail", {
+    title: "Categories",
+    category_detail: category.name,
+    item_list: items,
+  });
+});
