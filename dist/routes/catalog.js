@@ -12,5 +12,7 @@ router.get("/items/:id/delete", item_controller.item_delete_get);
 router.post("/items/:id/delete", item_controller.item_delete_post);
 router.get("/category/:id/delete", category_controller.category_delete_get);
 router.post("/category/:id/delete", category_controller.category_delete_post);
+router.get("/createcategory", category_controller.category_create_get);
+router.post("/createcategory", category_controller.category_create_post);
 module.exports = router;
 //# sourceMappingURL=catalog.js.map

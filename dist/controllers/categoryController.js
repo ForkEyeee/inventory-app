@@ -38,4 +38,20 @@ exports.category_delete_get = asyncHandler(async (req, res, next) => {
         title: category.name,
     });
 });
+exports.category_create_get = asyncHandler(async (req, res, next) => {
+    //Get category to delete
+    res.render("category_form", {
+        title: "Create Category",
+    });
+});
+exports.category_create_post = asyncHandler(async (req, res, next) => {
+    const newCategory = new Category({
+        name: req.body.name,
+        description: req.body.desc,
+    });
+    // res.redirect("");
+    console.log(newCategory);
+    await newCategory.save();
+    res.redirect(newCategory.url);
+});
 //# sourceMappingURL=categoryController.js.map

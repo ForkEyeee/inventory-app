@@ -38,3 +38,4 @@ exports.item_delete_post = asyncHandler(async (req, res, next) => {
   await Item.deleteOne({ _id: req.params.id }).exec();
   res.redirect("/catalog/items");
 });
+
