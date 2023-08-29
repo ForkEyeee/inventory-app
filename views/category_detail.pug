@@ -3,13 +3,15 @@ extends layout
 block content
 	h1= category_detail
 
+	if item_list.length
+		p #[strong Delete the following items before attempting to delete this author.]
 	ul
 		each item in item_list
 			li
 				a(href=item.url) #{item.name}
-				|  #{item.description}
-				|  #{price}
-				|  #{quantity}
-
+			|  #{item.description}
+			|  #{price}
+			|  #{quantity}
 		else
 			li There are no items for this category.
+			a(href= category_url + "/delete") Delete

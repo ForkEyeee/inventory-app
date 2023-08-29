@@ -5,16 +5,6 @@ const Item = require("../models/item");
 const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 exports.index = asyncHandler(async (req, res, next) => {
-    // Get details of items and categories count (in parallel)
-    // const [numCategories, numItems] = await Promise.all([
-    //   Item.countDocuments({}).exec(),
-    //   Category.countDocuments({}).exec(),
-    // ]);
-    // res.render("index", {
-    //   title: "Inventory Home",
-    //   category_count: numCategories,
-    //   item_count: numItems,
-    // });
     const categories = await Category.find({}).exec();
     console.log(categories[0].url);
     console.log(categories[0]);
@@ -30,7 +20,21 @@ exports.category_detail = asyncHandler(async (req, res, next) => {
     res.render("category_detail", {
         title: "Categories",
         category_detail: category.name,
+        category_id: category._id,
+        category_url: category.url,
         item_list: items,
     });
-    console.log(items);
+});
+exports.category_delete_post = asyncHandler(async (req, res, next) => {
+    //Delete category
+    // console.log("TESTING");
+    await Category.deleteOne({ _id: req.params.id }).exec();
+    res.redirect("/catalog");
+});
+exports.category_delete_get = asyncHandler(async (req, res, next) => {
+    //Get category to delete
+    const category = await Category.findOne({ _id: req.params.id }).exec();
+    res.render("category_delete", {
+        title: category.name,
+    });
 });

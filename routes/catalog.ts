@@ -9,4 +9,8 @@ router.get("/category/:id", category_controller.category_detail);
 
 router.get("/items/:id", item_controller.item_detail);
 
+router.get("/category/:id/delete", category_controller.category_delete_get);
+
+router.post("/category/:id/delete", category_controller.category_delete_post);
+
 module.exports = router;
