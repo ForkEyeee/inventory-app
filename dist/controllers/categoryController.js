@@ -38,3 +38,4 @@ exports.category_delete_get = asyncHandler(async (req, res, next) => {
         title: category.name,
     });
 });
+//# sourceMappingURL=categoryController.js.map

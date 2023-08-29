@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	h1= title
+	h4(class= 'categories-title') Items:
+	div(class= 'categories-container') 
+
+		each item in item_list
+			ul
+				li
+					a(href=item.url) #{item.name}
+				|  #{item.description}
+				|  #{item.price}
+				|  #{item.quantity}
+		else
+			li There are no categories.
