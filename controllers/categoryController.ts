@@ -6,8 +6,8 @@ const asyncHandler = require("express-async-handler");
 
 exports.index = asyncHandler(async (req, res, next) => {
   const categories = await Category.find({}).exec();
-  console.log(categories[0].url);
-  console.log(categories[0]);
+  // console.log(categories[0].url);
+  // console.log(categories[0]);
   res.render("index", {
     title: "Inventory Application",
     category_list: categories,
@@ -30,12 +30,14 @@ exports.category_detail = asyncHandler(async (req, res, next) => {
 exports.category_delete_post = asyncHandler(async (req, res, next) => {
   //Delete category
   // console.log("TESTING");
+
   await Category.deleteOne({ _id: req.params.id }).exec();
   res.redirect("/catalog");
 });
 
 exports.category_delete_get = asyncHandler(async (req, res, next) => {
   //Get category to delete
+
   const category = await Category.findOne({ _id: req.params.id }).exec();
   res.render("category_delete", {
     title: category.name,
@@ -44,6 +46,7 @@ exports.category_delete_get = asyncHandler(async (req, res, next) => {
 
 exports.category_create_get = asyncHandler(async (req, res, next) => {
   //Get category to delete
+
   res.render("category_form", {
     title: "Create Category",
   });
@@ -55,7 +58,9 @@ exports.category_create_post = asyncHandler(async (req, res, next) => {
     description: req.body.desc,
   });
   // res.redirect("");
-  console.log(newCategory);
+  // console.log(newCategory);
+  console.log(req.body);
+
   await newCategory.save();
   res.redirect(newCategory.url);
 });

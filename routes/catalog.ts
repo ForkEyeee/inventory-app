@@ -24,4 +24,8 @@ router.get("/createcategory", category_controller.category_create_get);
 
 router.post("/createcategory", category_controller.category_create_post);
 
+router.get("/createitem", item_controller.item_create_get);
+
+router.post("/createitem", item_controller.item_create_post);
+
 module.exports = router;

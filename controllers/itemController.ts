@@ -30,7 +30,7 @@ exports.item_delete_get = asyncHandler(async (req, res, next) => {
     title: item.name,
     item_id: item._id,
   });
-  console.log(item);
+  // console.log(item);
 });
 
 exports.item_delete_post = asyncHandler(async (req, res, next) => {
@@ -39,3 +39,28 @@ exports.item_delete_post = asyncHandler(async (req, res, next) => {
   res.redirect("/catalog/items");
 });
 
+exports.item_create_get = asyncHandler(async (req, res, next) => {
+  const categories = await Category.find({}).exec();
+
+  res.render("item_form", {
+    title: "Create Item",
+    category_list: categories,
+  });
+});
+
+exports.item_create_post = asyncHandler(async (req, res, next) => {
+  const newItem: any = new Item({
+    name: req.body.name,
+    description: req.body.desc,
+    category: req.body.category,
+    price: req.body.price,
+    quantity: req.body.quantity,
+  });
+  // res.redirect("");
+  // console.log(newCategory);
+  console.log(req.body);
+
+  await newItem.save();
+  console.log(newItem.url);
+  res.redirect(newItem.url);
+});

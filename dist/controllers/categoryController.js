@@ -6,8 +6,8 @@ const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 exports.index = asyncHandler(async (req, res, next) => {
     const categories = await Category.find({}).exec();
-    console.log(categories[0].url);
-    console.log(categories[0]);
+    // console.log(categories[0].url);
+    // console.log(categories[0]);
     res.render("index", {
         title: "Inventory Application",
         category_list: categories,
@@ -50,7 +50,8 @@ exports.category_create_post = asyncHandler(async (req, res, next) => {
         description: req.body.desc,
     });
     // res.redirect("");
-    console.log(newCategory);
+    // console.log(newCategory);
+    console.log(req.body);
     await newCategory.save();
     res.redirect(newCategory.url);
 });
