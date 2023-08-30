@@ -44,7 +44,6 @@ body {
   font-weight: bold;
 }
 
-/* Grid CSS for categories-container */
 .categories-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
