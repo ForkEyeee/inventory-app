@@ -57,4 +57,29 @@ exports.item_create_post = asyncHandler(async (req, res, next) => {
     console.log(newItem.url);
     res.redirect(newItem.url);
 });
+exports.item_update_get = asyncHandler(async (req, res, next) => {
+    const item = await Item.findOne({ _id: req.params.id }).exec();
+    const category = await Category.find({}).exec();
+    // const newCategory: any = new Category({
+    //   name: req.body.name,
+    //   description: req.body.desc,
+    // });
+    console.log(item.category);
+    res.render("item_form", {
+        title: "Create Category",
+        item: item,
+        category_list: category,
+    });
+});
+exports.item_update_post = asyncHandler(async (req, res, next) => {
+    console.log(req.body);
+    await Item.findOneAndUpdate({ _id: req.params.id }, {
+        name: req.body.name,
+        description: req.body.desc,
+        category: req.body.category,
+        price: req.body.price,
+        quantity: req.body.quantity,
+    });
+    res.redirect("/catalog/items/" + req.params.id);
+});
 //# sourceMappingURL=itemController.js.map

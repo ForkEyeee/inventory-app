@@ -4,6 +4,10 @@ block content
 	h1= title
 
 		p= item.description
+		p= item.category
 		p= item.price
 		p= item.quantity
+	div
 	a(href= item_url + "/delete") Delete
+	div
+		a(href= item_url + "/update") Update

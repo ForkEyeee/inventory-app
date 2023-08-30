@@ -20,6 +20,7 @@ exports.category_detail = asyncHandler(async (req, res, next) => {
     res.render("category_detail", {
         title: "Categories",
         category_detail: category.name,
+        category_description: category.description,
         category_id: category._id,
         category_url: category.url,
         item_list: items,
@@ -54,5 +55,24 @@ exports.category_create_post = asyncHandler(async (req, res, next) => {
     console.log(req.body);
     await newCategory.save();
     res.redirect(newCategory.url);
+});
+exports.category_update_get = asyncHandler(async (req, res, next) => {
+    const category = await Category.findOne({ _id: req.params.id }).exec();
+    // const newCategory: any = new Category({
+    //   name: req.body.name,
+    //   description: req.body.desc,
+    // });
+    res.render("category_form", {
+        title: "Create Category",
+        category: category,
+    });
+});
+exports.category_update_post = asyncHandler(async (req, res, next) => {
+    const newCategory = new Category({
+        name: req.body.name,
+        description: req.body.desc,
+    });
+    await Category.findOneAndUpdate({ _id: req.params.id }, { name: newCategory.name, description: newCategory.description });
+    res.redirect("/catalog");
 });
 //# sourceMappingURL=categoryController.js.map

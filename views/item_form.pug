@@ -6,21 +6,24 @@ block content
 	form(method='POST' action='')
 		div.form-group
 			label(for='name') Name:
-			input#title.form-control(type='text' placeholder='Name of Category' name='name' required='true' value=(undefined===book ? '' : book.title) )
+			input#name.form-control(type='text' placeholder='Name of Category' name='name' required='true' value=(undefined===item ? '' : item.name) )
 		div.form-group
 			label(for='desc') Description:
-				input#title.form-control(type='text' placeholder='description' name='desc' required='true' value=(undefined===book ? '' : book.title) )
+				input#desc.form-control(type='text' placeholder='description' name='desc' required='true' value=(undefined===item ? '' : item.description) )
 		div.form-group
 			label(for='category') Category:
-				select(for="category")
-					each category in category_list 
+			select#category.form-control(type='select' placeholder='Select Category' name='category' required='true' )
+				each category in category_list
+					if category
+						option(value=category._id selected=(category._id === item.category)) #{category.name} 
+					else
 						option(value=category._id) #{category.name}
 		div.form-group
 			label(for='quantity') Quantity:
-				input#title.form-control(type='number' placeholder='quantity' name='quantity' required='true' value=(undefined===book ? '' : book.title) )
+				input#quantity.form-control(type='number' placeholder='quantity' name='quantity' required='true' value=(undefined===item ? '' : item.quantity) )
 		div.form-group
 			label(for='price') Price:
-				input#title.form-control(type='number' placeholder='price' name='price' required='true' value=(undefined===book ? '' : book.title) )
+				input#price.form-control(type='number' placeholder='price' name='price' required='true' value=(undefined===item ? '' : item.price) )
 
 		button.btn.btn-primary(type='submit') Submit
 

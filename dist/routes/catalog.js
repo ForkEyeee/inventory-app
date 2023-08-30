@@ -16,5 +16,9 @@ router.get("/createcategory", category_controller.category_create_get);
 router.post("/createcategory", category_controller.category_create_post);
 router.get("/createitem", item_controller.item_create_get);
 router.post("/createitem", item_controller.item_create_post);
+router.get("/category/:id/update", category_controller.category_update_get);
+router.post("/category/:id/update", category_controller.category_update_post);
+router.post("/items/:id/update", item_controller.item_update_post);
+router.get("/items/:id/update", item_controller.item_update_get);
 module.exports = router;
 //# sourceMappingURL=catalog.js.map
