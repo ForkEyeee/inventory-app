@@ -41,7 +41,12 @@ exports.item_delete_post = asyncHandler(async (req, res, next) => {
 
 exports.item_create_get = asyncHandler(async (req, res, next) => {
   const categories = await Category.find({}).exec();
-
+  // categories.forEach(category => {
+  //   // console.log(`Before ${category._id}`);
+  //   category._id = category._id.toString();
+  //   // console.log(`After ${category._id}`);
+  // });
+  // console.log(categories[0]._id);
   res.render("item_form", {
     title: "Create Item",
     category_list: categories,
@@ -58,10 +63,8 @@ exports.item_create_post = asyncHandler(async (req, res, next) => {
   });
   // res.redirect("");
   // console.log(newCategory);
-  console.log(req.body);
-
+  console.log(newItem);
   await newItem.save();
-  console.log(newItem.url);
   res.redirect(newItem.url);
 });
 
@@ -74,7 +77,7 @@ exports.item_update_get = asyncHandler(async (req, res, next) => {
   // });
   console.log(item.category);
   res.render("item_form", {
-    title: "Create Category",
+    title: "Update Item",
     item: item,
     category_list: category,
   });

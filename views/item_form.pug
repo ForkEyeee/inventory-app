@@ -14,10 +14,7 @@ block content
 			label(for='category') Category:
 			select#category.form-control(type='select' placeholder='Select Category' name='category' required='true' )
 				each category in category_list
-					if category
-						option(value=category._id selected=(category._id === item.category)) #{category.name} 
-					else
-						option(value=category._id) #{category.name}
+					option(value=category._id selected=(category._id.toString() === item.category.toString() && "selected")) #{category.name}
 		div.form-group
 			label(for='quantity') Quantity:
 				input#quantity.form-control(type='number' placeholder='quantity' name='quantity' required='true' value=(undefined===item ? '' : item.quantity) )
