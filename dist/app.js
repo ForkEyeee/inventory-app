@@ -64,4 +64,3 @@ app.use(function (err, req, res, next) {
 });
 // console.log(mongoose.connection.readyState);
 module.exports = app;
-//# sourceMappingURL=app.js.map

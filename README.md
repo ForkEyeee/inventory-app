@@ -35,10 +35,10 @@ Ensure [Node.js](https://nodejs.org/en/download/) and [npm](http://npmjs.com) ar
 4. Launch the development server:
 
    ```bash
-   npm start
+   npm run serverstart
    ```
 
-Now, open your browser and go to `http://localhost:3000` to begin managing your inventory.
+Now, open your browser and go to `http://localhost:8000` to begin managing your inventory.
 
 ## Building for Production
 
