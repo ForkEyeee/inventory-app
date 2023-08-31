@@ -53,39 +53,100 @@ exports.category_create_get = asyncHandler(async (req, res, next) => {
   });
 });
 
-exports.category_create_post = asyncHandler(async (req, res, next) => {
-  const newCategory: any = new Category({
-    name: req.body.name,
-    description: req.body.desc,
-  });
-  // res.redirect("");
-  // console.log(newCategory);
-  console.log(req.body);
+exports.category_update_post = [
+  body("name", "Name must not be empty.").trim().isLength({ min: 10 }).escape(),
+  body("desc", "Description must not be empty")
+    .trim()
+    .isLength({ min: 10 })
+    .escape(),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    console.log(errors);
+    if (!errors.isEmpty()) {
+      const category = await Category.findOne({ _id: req.params.id }).exec();
+      res.render("category_form", {
+        title: "Create Category",
+        category: category,
+        errors: errors.array(),
+      });
+    } else {
+      const newCategory: any = new Category({
+        name: req.body.name,
+        description: req.body.desc,
+      });
+      await Category.findOneAndUpdate(
+        { _id: req.params.id },
+        { name: newCategory.name, description: newCategory.description }
+      );
+      res.redirect("/catalog");
+    }
+  }),
+];
 
-  await newCategory.save();
-  res.redirect(newCategory.url);
-});
+exports.category_create_post = [
+  body("name", "Name must not be empty.").trim().isLength({ min: 10 }).escape(),
+  body("desc", "Description must not be empty")
+    .trim()
+    .isLength({ min: 10 })
+    .escape(),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    console.log(errors);
+    const category: any = new Category({
+      name: req.body.name,
+      description: req.body.desc,
+    });
+    if (!errors.isEmpty()) {
+      res.render("category_form", {
+        title: "Create Category",
+        category: category,
+        errors: errors.array(),
+      });
+    } else {
+      const newCategory: any = new Category({
+        name: req.body.name,
+        description: req.body.desc,
+      });
+      await newCategory.save();
+      res.redirect(newCategory.url);
+    }
+  }),
+];
 
 exports.category_update_get = asyncHandler(async (req, res, next) => {
   const category = await Category.findOne({ _id: req.params.id }).exec();
-  // const newCategory: any = new Category({
-  //   name: req.body.name,
-  //   description: req.body.desc,
-  // });
   res.render("category_form", {
     title: "Create Category",
     category: category,
   });
 });
 
-exports.category_update_post = asyncHandler(async (req, res, next) => {
-  const newCategory: any = new Category({
-    name: req.body.name,
-    description: req.body.desc,
-  });
-  await Category.findOneAndUpdate(
-    { _id: req.params.id },
-    { name: newCategory.name, description: newCategory.description }
-  );
-  res.redirect("/catalog");
-});
+exports.category_update_post = [
+  body("name", "Name must not be empty.").trim().isLength({ min: 10 }).escape(),
+  body("desc", "Description must not be empty")
+    .trim()
+    .isLength({ min: 10 })
+    .escape(),
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+    console.log(errors);
+    if (!errors.isEmpty()) {
+      const category = await Category.findOne({ _id: req.params.id }).exec();
+      res.render("category_form", {
+        title: "Create Category",
+        category: category,
+        errors: errors.array(),
+      });
+    } else {
+      const newCategory: any = new Category({
+        name: req.body.name,
+        description: req.body.desc,
+      });
+      await Category.findOneAndUpdate(
+        { _id: req.params.id },
+        { name: newCategory.name, description: newCategory.description }
+      );
+      res.redirect("/catalog");
+    }
+  }),
+];

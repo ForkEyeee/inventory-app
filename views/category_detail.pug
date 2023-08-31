@@ -4,17 +4,16 @@ block content
 	h1= category_detail
 	h4= category_description
 	if item_list.length
-		p #[strong Delete the following items before attempting to delete this author.]
-	ul
-		each item in item_list
-			li
-				a(href=item.url) #{item.name}
-			|  #{item.description}
-			|  #{item.price}
-			|  #{item.quantity}
-		else
-			li There are no items for this category.
-			a(href= category_url + "/delete") Delete
+		p.error-text #[strong Delete the following items before attempting to delete this author.]
+		ul
+			each item in item_list
+				li
+					a(href=item.url) #{item.name}
+				|  	#{item.description}
+	else
+		li There are no items for this category.
+	div(class="btn-container")
+		a(href= category_url + "/delete" style=(item_list.length ? "Display: none" : "Display: block")) Delete
+		a(href= category_url + "/update") Update
 
-	a(href= category_url + "/update") Update
 

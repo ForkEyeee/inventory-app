@@ -1,13 +1,7 @@
 extends layout
 
 block content
-	//- h1= title
-	//- p Welcome to #{title}
-	//- ul
-	//-   li #[strong Categories:] !{category_count}
-	//-   li #[strong Items:] !{item_count}
-	h1= title
-	h4(class= 'categories-title') Categories:
+	h1(class="item-text home-text") Choose a category
 	div(class= 'categories-container') 
 
 		each category in category_list

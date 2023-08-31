@@ -15,10 +15,12 @@ exports.item_list = asyncHandler(async (req, res, next) => {
 exports.item_detail = asyncHandler(async (req, res, next) => {
     //Get list of categories
     const item = await Item.findOne({ _id: req.params.id }).exec();
+    const category = await Category.findOne({ _id: item.category });
     res.render("item_detail", {
         title: item.name,
         item: item,
         item_url: item.url,
+        category_name: category.name,
     });
 });
 exports.item_delete_get = asyncHandler(async (req, res, next) => {

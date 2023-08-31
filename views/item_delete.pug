@@ -3,10 +3,9 @@ extends layout
 block content
 	h1 #{title}
 
-		p Do you really want to delete this Item?
+	h2(class="delete-text") Do you really want to delete this Category?
 
-		form(method='POST' action='')
-			div.form-group
-				input#itemid.form-control(type='hidden' name='itemid' required='true', value=item_id )
-
-			button.btn.btn-primary(type='submit') Delete
+	form(method='POST' action='')
+		div.form-group
+			input#itemid.form-control(type='hidden' name='itemid' required='true', value=item_id )
+		button(type='submit' class="delete-btn button") Delete
