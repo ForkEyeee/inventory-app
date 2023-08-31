@@ -22,6 +22,7 @@
     "express-async-handler": "^1.2.0",
     "express-rate-limit": "^6.9.0",
     "express-validator": "^7.0.1",
+    "fix-has-install-script": "^1.0.2",
     "helmet": "^7.0.0",
     "http-errors": "~1.6.3",
     "luxon": "^3.4.2",
