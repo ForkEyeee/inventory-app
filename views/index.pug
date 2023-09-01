@@ -3,12 +3,12 @@ extends layout
 block content
 	h1(class="item-text home-text") Choose a category
 	div(class= 'categories-container') 
-
-		each category in category_list
-			ul
-				li
-					a(href=category.url) #{category.name}
-				|  #{category.description}
-		else
-			li There are no categories.
+		if category_list
+			each category in category_list
+				ul
+					li
+						a(href=category.url) #{category.name}
+					|  #{category.description}
+			else
+				li There are no categories.
 
