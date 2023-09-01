@@ -39,10 +39,10 @@ exports.category_create_get = asyncHandler(async (req, res, next) => {
     });
 });
 exports.category_update_post = [
-    body("name", "Name must not be empty.").trim().isLength({ min: 10 }).escape(),
+    body("name", "Name must not be empty.").trim().isLength({ min: 1 }).escape(),
     body("desc", "Description must not be empty")
         .trim()
-        .isLength({ min: 10 })
+        .isLength({ min: 1 })
         .escape(),
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
@@ -65,10 +65,10 @@ exports.category_update_post = [
     }),
 ];
 exports.category_create_post = [
-    body("name", "Name must not be empty.").trim().isLength({ min: 10 }).escape(),
+    body("name", "Name must not be empty.").trim().isLength({ min: 1 }).escape(),
     body("desc", "Description must not be empty")
         .trim()
-        .isLength({ min: 10 })
+        .isLength({ min: 1 })
         .escape(),
     asyncHandler(async (req, res, next) => {
         const errors = validationResult(req);
